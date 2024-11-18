@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Lab4.Models.ServiceContract>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Service Contracts</title>
+</head>
+<body>
+    <h2>Service Contracts</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().ContractDate)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().PhoneNumber)</th>
+                <th>Employee Name</th>
+                <th>Subscriber Name</th>
+                <th>Tariff Plan</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.ContractDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                    <td>@item.Employee?.FullName</td>
+                    <td>@item.Subscriber?.FullName</td>
+                    <td>@item.TariffPlanNameNavigation?.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

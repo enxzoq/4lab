@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Lab4.Models.ServiceStatistic>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Service Statistics</title>
+</head>
+<body>
+    <h2>Service Statistics</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().CallDuration)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Smscount)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Mmscount)</th>
+                <th>@Html.DisplayNameFor(model => model.FirstOrDefault().DataTransferAmount)</th>
+                <th>Contract Details</th>
+                <th>Subscriber</th>
+                <th>Employee</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.CallDuration)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Smscount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Mmscount)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataTransferAmount)</td>
+                    <td>
+                        Contract ID: @item.Contract?.ContractId <br />
+                        Phone Number: @item.Contract?.PhoneNumber
+                    </td>
+                    <td>@item.Contract?.Subscriber?.FullName</td>
+                    <td>@item.Contract?.Employee?.FullName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
